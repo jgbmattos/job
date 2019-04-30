@@ -1,0 +1,7 @@
+Flask
+connexion
+Flask-Injector
+fastavro
+elasticsearch
+boto
+PyJWT==1.4.0
