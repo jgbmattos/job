@@ -70,22 +70,22 @@ Bancos e outras instituições acredito que teriam mais interesse em acessar a A
 
 Criaria os seguintes endpoints:
 - **sistema 1**
-  - /servico1/<cpf>
-  - /servico1/<nome>
-  - /servico1/<endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
+  - /sistema1/< cpf>
+  - /sistema1/< nome>
+  - /sistema1/< endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
     - Permtiria query's de data para listas de dividas, data de criação da divida, ou algo parecido.
 - **sistema 2**  
-  - /servico2/<cpf>
-  - /servico2/<nome>
-  - /servico2/<endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
-  - /servico2
+  - /sistema2/< cpf>
+  - /sistema2/< nome>
+  - /sistema2/< endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
+  - /sistema2
     - Permitira querys de lista de dividas (Pessoas com maiores dividas, por favor, quantidade, etc).
 - **sistema 3**  
-  - /servico3/<cpf>
-  - /servico3/<cartao>
-  - /servico3/<dt_movimentacao> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
-  - /servico3/<tipo_de_movimentacao>
-  - /servico3/<id_bureau> --listaria consultas no bureau
+  - /sistema3/< cpf>
+  - /sistema3/< cartao>
+  - /sistema3/<dt_movimentacao> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
+  - /sistema3/<tipo_de_movimentacao>
+  - /sistema3/<id_bureau> --listaria consultas no bureau
   
   
 OBS: Não fica totalmente claro quais dados são necessários ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
