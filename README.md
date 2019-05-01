@@ -46,5 +46,16 @@ A arquitetura básica do projeto consiste nos seguintes items:
 Diagrama:
 ![Diagrama em branco (1)](https://user-images.githubusercontent.com/10090364/57038271-ef908780-6c2f-11e9-8044-0dceae8d7767.png)
 
-Detalhamento da solução.
+# **Tecnologias adotadas**
+- AWS API GATEWAY.
+- AWS Load Balancer.
+- Hystrix (Ciruit Breaker e monitoramento).
+- Python.
+  - FLASK. Utilizado nos testes desse documento. *
+    - *Para uma solução oficional utilizaria AIOHTTP. Por ser assíncrono ele tende a performar quando temos requisições demoradas e/ou com muitas requisições simultâneas.
+- Swagger. Para geração de API e documentação das mesmas (Não utilizado nesse projeto porém seria uma opção para um caso real).
+- AWS MQ para mensageria entre os microserviços.
+- MongoDB & PostgreSQL
+  
+
 
