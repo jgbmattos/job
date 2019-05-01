@@ -68,4 +68,21 @@ Para disponibilizar os dados acredito que uma aplicação WEB seja suficiente.
 Dados sensíveis devem ser disponibilizados mediante autenticação. 
 Bancos e outras instituições acredito que teriam mais interesse em acessar a API diretamente para poder integrar com os sistemas próprios. Nesse cenário um local no site para criação de CHAVES de acesso pode ser uma maneira interessante de criar um link de acesso com sistemas tercerios de forma segura.
 
+Criaria os seguintes endpoints:
+- /servico1/<cpf>
+- /servico1/<nome>
+- /servico1/<endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
+  - Permtiria query's de data para listas de dividas, data de criação da divida, ou algo parecido.
+- /servico2/<cpf>
+- /servico2/<nome>
+- /servico2/<endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
+- /servico2
+  - Permitira querys de lista de dividas (Pessoas com maiores dividas, por favor, quantidade, etc).
+- /servico3/<cpf>
+- /servico3/<cartao>
+- /servico3/<dt_movimentacao> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
+- /servico3/<tipo_de_movimentacao>
+- /servico3/<id_bureau> --listaria consultas no bureau
+  
+  
 OBS: Não fica totalmente claro quais dados são necessários ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
