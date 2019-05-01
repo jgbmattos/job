@@ -59,7 +59,6 @@ Diagrama:
 
 # **Dados armazenados**
 - Para todos os sitemas armazenaria dados da ultima consulta. Data/Hora, IP, Usuário.
-- Sistema 1. Não consigo pensar em nada mais para armazenar.
 - Sistema 2.
    - Armazenaria também o nome da pessoa. Já tenho todos os dados mais relevantes, o nome não me parece ser um problema. Da forma que está caso eu precise apresentar o score + nome para algum usuário eu precisaria fazer a consulta em outro microservico para buscar essa informação. Me parece disperdício.
    - A lista de dívidas me parece algo importante para fazer o score do cliente, porém, por se tratar de uma informação bastante confidencial acredito que não deveria ser gravado no banco B. Caso seja necessário para o calculo deve ser solicitado ao serviço A que fará uma avaliação de permissão.
