@@ -44,7 +44,7 @@ A arquitetura básica do projeto consiste nos seguintes items:
   - Banco de dados MongoDB
 
 Diagrama:
-![Diagrama em branco (1)](https://user-images.githubusercontent.com/10090364/57038271-ef908780-6c2f-11e9-8044-0dceae8d7767.png)
+![Arquitetura microserviços](https://user-images.githubusercontent.com/10090364/57042620-99c1dc80-6c3b-11e9-8f0f-08916070b6f2.png)
 
 # **Tecnologias adotadas**
 - AWS API GATEWAY.
@@ -66,8 +66,7 @@ Diagrama:
    
 # **Disponibilização dos Dados**
 Para disponibilizar os dados acredito que uma aplicação WEB seja suficiente.
-Dados sensíveis devem ser disponibilizados mediando usuário usuário e senha. Para os casos em que se faz necessário o envio do TOKEN na requisição.
-Bancos e outras instituições acredito que teriam mais interesse em acessar a API diretamente para poder integrar com os sistemas próprios. Nesse cenário um local no site para criação de CHAVES de acesso podem ser uma maneira interessante de criar um link de acesso com sistemas tercerios.
-  
+Dados sensíveis devem ser disponibilizados mediante autenticação. 
+Bancos e outras instituições acredito que teriam mais interesse em acessar a API diretamente para poder integrar com os sistemas próprios. Nesse cenário um local no site para criação de CHAVES de acesso pode ser uma maneira interessante de criar um link de acesso com sistemas tercerios de forma segura.
 
-
+OBS: Não fica totalmente claro quais dados são necessários ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
