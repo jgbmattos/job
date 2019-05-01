@@ -56,6 +56,18 @@ Diagrama:
 - Swagger. Para geração de API e documentação das mesmas (Não utilizado nesse projeto porém seria uma opção para um caso real).
 - AWS MQ para mensageria entre os microserviços.
 - MongoDB & PostgreSQL
+
+# **Dados armazenados**
+- Para todos os sitemas armazenaria dados da ultima consulta. Data/Hora, IP, Usuário.
+- Sistema 1. Não consigo pensar em nada mais para armazenar.
+- Sistema 2.
+   - Armazenaria também o nome da pessoa. Já tenho todos os dados mais relevantes, o nome não me parece ser um problema. Da forma que está caso eu precise apresentar o score + nome para algum usuário eu precisaria fazer a consulta em outro microservico para buscar essa informação. Me parece disperdício.
+   - A lista de dívidas me parece algo importante para fazer o score do cliente, porém, por se tratar de uma informação bastante confidencial acredito que não deveria ser gravado no banco B. Caso seja necessário para o calculo deve ser solicitado ao serviço A que fará uma avaliação de permissão.
+   
+# **Disponibilização dos Dados**
+Para disponibilizar os dados acredito que uma aplicação WEB seja suficiente.
+Dados sensíveis devem ser disponibilizados mediando usuário usuário e senha. Para os casos em que se faz necessário o envio do TOKEN na requisição.
+Bancos e outras instituições acredito que teriam mais interesse em acessar a API diretamente para poder integrar com os sistemas próprios. Nesse cenário um local no site para criação de CHAVES de acesso podem ser uma maneira interessante de criar um link de acesso com sistemas tercerios.
   
 
 
