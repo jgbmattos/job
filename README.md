@@ -29,6 +29,7 @@ A arquitetura básica do projeto consiste nos seguintes items:
 - **BASE A**:
   - Sistema deve ficar em um rede interna, atrás de um firewall. Com isso pretende-se além da segurança tradicional que a combinação HTTPS + JWT para requisições da API trazer uma melhor manutenção de pessoas autorizadas.
   - Acredito também que para um sistema desse tipo é muito importante que as autorização sejam muito bem seguimentadas para somente o escopo que a pessoa realmente deve ter acesso, além do acesso aos dados serem sempre temporários.
+  - Banco PostgreSQL
   
 - **BASE B**:
   - Segurança, autorização e autenticação será garantida através do protocolo HTTPS + OAUTH 2.0.
@@ -38,6 +39,7 @@ A arquitetura básica do projeto consiste nos seguintes items:
   
 - **BASE C**:
   - Utiliza-se de recurso elástico assim como a BASE B e com o intuíto de aumentar ainda mais o desempenho desse recurso não seria utilizado o OAuth 2.0. Com a diminuição do payload adicional que o token JWT insere na comunicação, níveis maiores de velocidade devem ser alcançados.
+  - Deve-se, para manter alguma segurança, ser enviado na requisição ao recurso um usuário e senha. A lógica de validação desse usuário deve ser armazenada e tratada pelo próprio micro serviço.
   - Para ter um desempenho satisfatorio, esse micro serviço deverá ficar atrás de um balancedor de carga e distruído em um cluster de servidores.
   - Banco de dados MongoDB
 
