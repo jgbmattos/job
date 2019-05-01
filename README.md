@@ -11,5 +11,4 @@ O problema consiste em três databases, **BASE A**, **BASE B** e **BASE C**. As 
 - **BASE C**:
   - Não possui uma preocupação grande com segurança.
   - O acesso aos dados deve ser muito rapido.
-  
-  
+ 
