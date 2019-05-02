@@ -75,6 +75,7 @@ Criaria os seguintes endpoints:
       - Data_cadastro
       - Data_atualizacao
       - nome
+      - ...
   - [GET] /sistema1/pessoa_fisica/< id>    
   - [POST] /sistema1/pessoa_fisica
     - Parâmetros :
@@ -82,6 +83,7 @@ Criaria os seguintes endpoints:
       - cpf
       - nome da mae
       - nome do pai
+      - ...
       - Endereco (objeto)
       - Lista de dividas (objeto)
   - [GET] /sistema1/pessoa_fisica/< id>/endereco
@@ -97,7 +99,7 @@ Criaria os seguintes endpoints:
       - ...
   - [GET] /sistema1/pessoa_fisica/< id>/lista_dividas
   - [POST] /sistema1/pessoa_fisica/< id>/lista_dividas
-    - Divida (Objeto)
+    - Dividas (Objeto)
   - [PUT] /sistema1/pessoa_fisica/<id>/lista_dividas/< id>
   
 - **sistema 2**  
@@ -106,6 +108,7 @@ Criaria os seguintes endpoints:
       - Nome
       - CPF
       - Data_cadastro
+      - ...
   - [GET] /sistema2/pessoa_fisica/< id>
   - [PUT] /sistema2/pessoa_fisica/< id>
   - [POST] /sistema2/pessoa_fisica
@@ -114,6 +117,7 @@ Criaria os seguintes endpoints:
       - cpf
       - nome da mae
       - nome do pai
+      - ...
       - Endereco (objeto)
       - Lista Bens (objeto)
       - Fontes de renda (objeto)
@@ -124,17 +128,23 @@ Criaria os seguintes endpoints:
       - Numero 
       - ...
   - [PUT] /sistema2/pessoa_fisica/< id>/endereco/< id>
-      - Parâmetros:
-        - Logradouro
-        - Numero 
-        - ...
+  
+  - [GET] /sistema2/pessoa_fisica/< id>/renda
+  - [POST] /sistema2/pessoa_fisica/< id>/renda
+    - Parâmetros:
+      - fontes de renda
+      - ...
+  - [PUT] /sistema2/pessoa_fisica/< id>/renda
+  
   - [GET] /sistema2/pessoa_fisica/< id>/bens
     - Filtros
       - Data_cadastro
       - Valor_bem
   - [PUT] /sistema2/pessoa_fisica/< id>/bens/< id>
   - [POST] /sistema2/pessoa_fisica/< id>/bens
-  
+    - Parâmetros:
+      - Lista de bens
+      
 - **sistema 3**  
   - [GET] /sistema3/pessoa_fisica
     - Filtros:
@@ -155,10 +165,24 @@ Criaria os seguintes endpoints:
   - [GET] /sistema3/pessoa_fisica/< id>/movimentacao_financeira
   - [PUT] /sistema3/pessoa_fisica/< id>/movimentacao_financeira/< id>
   - [POST] /sistema3/pessoa_fisica/< id>/movimentacao_financeira
+    - Parametros
+      - Movimentações financeiras
+        - lat
+        - lon
+        - valor
+        - categoria
+        
   - [GET] /sistema3/pessoa_fisica/< id>/dados_ultima_compra
   - [PUT] /sistema3/pessoa_fisica/< id>/dados_ultima_compra/< id>
   - [POST] /sistema3/pessoa_fisica/< id>/dados_ultima_compra
-  
+      - Parametros
+      - Movimentações financeiras
+        - lat
+        - lon
+        - valor
+        - categoria
+        - cnpj
+
   - [GET] /sistema3/bureau
     - Filtros
       - ID
