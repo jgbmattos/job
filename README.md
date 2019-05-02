@@ -74,7 +74,7 @@ Criaria os seguintes endpoints:
       - Data_cadastro
       - Data_atualizacao
       - nome
-  - [GET] /sistema1/pessoa_fisica/<id>    
+  - [GET] /sistema1/pessoa_fisica/< id>    
   - [POST] /sistema1/pessoa_fisica
     - Parâmetros :
       - Nome
@@ -83,22 +83,55 @@ Criaria os seguintes endpoints:
       - nome do pai
       - Endereco (objeto)
       - Lista de dividas (objeto)
-  - [GET] /sistema1/pessoa_fisica/<id>/endereco
-  - [POST] /sistema1/pessoa_fisica/<id>/endereco
+  - [GET] /sistema1/pessoa_fisica/< id>/endereco
+  - [POST] /sistema1/pessoa_fisica/< id>/endereco
     - Parâmetros:
       - Logradouro
       - Numero 
       - ...
-  - [PUT] /sistema1/pessoa_fisica/<id>/endereco/<id>
+  - [PUT] /sistema1/pessoa_fisica/< id>/endereco/< id>
       - Parâmetros:
       - Logradouro
       - Numero 
       - ...
-  - [POST] /sistema1/pessoa_fisica/<id>/lista_dividas
+  - [GET] /sistema1/pessoa_fisica/< id>/lista_dividas
+  - [POST] /sistema1/pessoa_fisica/< id>/lista_dividas
     - Divida (Objeto)
-  - [PUT] /sistema1/pessoa_fisica/<id>/lista_dividas/<id>
- 
+  - [PUT] /sistema1/pessoa_fisica/<id>/lista_dividas/< id>
 - **sistema 2**  
+  - [GET] /sistema1/pessoa_fisica
+    - Filtros:
+      - Nome
+      - CPF
+      - Data_cadastro
+  - [GET] /sistema1/pessoa_fisica/< id>
+  - [PUT] /sistema1/pessoa_fisica/< id>
+  - [POST] /sistemas/pessoa_fisica
+    - Parâmetros:
+      - Nome
+      - cpf
+      - nome da mae
+      - nome do pai
+      - Endereco (objeto)
+      - Lista Bens (objeto)
+      - Fontes de renda (objeto)
+  - [GET] /sistema1/pessoa_fisica/< id>/endereco
+  - [POST] /sistema1/pessoa_fisica/< id>/endereco
+    - Parâmetros:
+      - Logradouro
+      - Numero 
+      - ...
+  - [PUT] /sistema1/pessoa_fisica/< id>/endereco/< id>
+      - Parâmetros:
+        - Logradouro
+        - Numero 
+        - ...
+  - [GET] /sistema1/pessoa_fisica/< id>/bens
+    - Filtros
+      - Data_cadastro
+      - Valor_bem
+  - [PUT] /sistema1/pessoa_fisica/< id>/bens
+  - [POST] /sistema1/pessoa_fisica/< id>
   - /sistema2/< cpf>
   - /sistema2/< nome>
   - /sistema2/< endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
