@@ -26,6 +26,8 @@ A arquitetura básica do projeto consiste nos seguintes items:
   - Será utilizado o Hystrix como circuit breaker na fila de mensageria entre os microserviços e servidor de authenticação e autorização.
   - Nesse cenário ele também será usado para monitoramento desses recursos.
 ###### *Não ficou claro no problema se os micro serviços que acessarão esses sistemas vão precisar de uma comunicação assíncrona. Acredito que sim, se este for o caso, trocasse a API REST proposta aqui, por algum serviço de mensageria entre todos os micro serviços e adicionasse o circuit breaker em toda essa comunicação. Além de prevenir problemas adicionasse uma camada legal de monitoramento em toda a comunicação.
+- Microserviço para base B e C, com o intuito de permitir escalar facilmente.
+- Base A não necessáriamente precisaria ser um microserviço. As vezes um monolito numa situação dessa facilite o controle de segurança de acesso etc.
 - **BASE A**:
   - Sistema deve ficar em um rede interna, atrás de um firewall. Com isso pretende-se além da segurança tradicional que a combinação HTTPS + JWT para requisições da API trazer uma melhor manutenção de pessoas autorizadas.
   - Acredito também que para um sistema desse tipo é muito importante que as autorização sejam muito bem seguimentadas para somente o escopo que a pessoa realmente deve ter acesso, além do acesso aos dados serem sempre temporários.
