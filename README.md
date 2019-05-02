@@ -58,9 +58,8 @@ Diagrama:
 
 # **Dados armazenados**
 - Para todos os sitemas armazenaria dados da ultima consulta. Data/Hora, IP, Usuário da última consulta.
-- Sistema 2.
-   - Armazenaria também o nome da pessoa. Já tenho todos os dados mais relevantes, o nome não me parece ser um problema. Da forma que está caso eu precise apresentar o score + nome para algum usuário eu precisaria fazer a consulta em outro microservico para buscar essa informação. Me parece disperdício.
-   - A lista de dívidas me parece algo importante para fazer o score do cliente, porém, por se tratar de uma informação bastante confidencial acredito que não deveria ser gravado no banco B. Caso seja necessário para o calculo deve ser solicitado ao serviço A que fará uma avaliação de permissão.
+- Para todos os sistemas eu armazenaria pelo menos o CPF, utilizaria esse dado como uma forma de PK entre os sistemas. Idealmente armazenaria também dados básicos de cadastro (CPF, Nome, Endereco, etc)
+  - Embora seja uma repetição de dados, evita a requisição para outro micro serviço em cascata em alguns casos, como, por exemplo no serviço 2 aonde o objetivo é calcular o score. Tendo no sistema 2 os dados da pessoa posso chamar esse serviço isolado, sem precisar cascatear de outro serviço.
    
 # **Disponibilização dos Dados**
 Para disponibilizar os dados acredito que a combinação de aplicação WEB/API's Rest sejam suficientes.
