@@ -27,7 +27,8 @@ A arquitetura básica do projeto consiste nos seguintes items:
   - Nesse cenário ele também será usado para monitoramento desses recursos.
 ###### *Não ficou claro no problema se os micro serviços que acessarão esses sistemas vão precisar de uma comunicação assíncrona. Acredito que sim, se este for o caso, a comunicação entre os micro serviços deverá ser feita por um message broker. O Hystrix além de prevenir problemas adicionasse uma camada legal de monitoramento em toda a comunicação.
 - Microserviço para base B e C, com o intuito de permitir escalar facilmente.
-- Base A não necessáriamente precisaria ser um microserviço. As vezes um monolito numa situação dessa facilite o controle de segurança de acesso etc.
+- Sistema para a base A, não necessáriamente precisaria ser um microserviço. As vezes um monolito numa situação dessa facilite o controle de segurança/acesso etc.
+
 - **Sistema 1**:
   - Sistema deve ficar em um rede interna, atrás de um firewall. 
   - Utilizar além do HTTPS, autenticação mútua.
