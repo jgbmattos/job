@@ -83,14 +83,21 @@ Criaria os seguintes endpoints:
       - nome do pai
       - Endereco (objeto)
       - Lista de dividas (objeto)
+  - [GET] /sistema1/pessoa_fisica/<id>/endereco
   - [POST] /sistema1/pessoa_fisica/<id>/endereco
+    - Parâmetros:
+      - Logradouro
+      - Numero 
+      - ...
   - [PUT] /sistema1/pessoa_fisica/<id>/endereco/<id>
+      - Parâmetros:
+      - Logradouro
+      - Numero 
+      - ...
   - [POST] /sistema1/pessoa_fisica/<id>/lista_dividas
+    - Divida (Objeto)
   - [PUT] /sistema1/pessoa_fisica/<id>/lista_dividas/<id>
-  - [PUT
-  - /sistema1/< nome>
-  - /sistema1/< endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
-    - Permtiria query's de data para listas de dividas, data de criação da divida, ou algo parecido.
+ 
 - **sistema 2**  
   - /sistema2/< cpf>
   - /sistema2/< nome>
