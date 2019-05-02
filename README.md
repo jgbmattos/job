@@ -22,6 +22,7 @@ A seguir serão discutidos três temas:
 A arquitetura básica do projeto consiste nos seguintes items:
 - AWS API GATEWAY
   - O Gateway terá a função de direcionar as requisições para os devidos serviços, além de criptografar toda a comunicação implementando o protocolo HTTPS.
+  - Utilizaria a funcionalidade de cache para aumentar o desempenho.
 - Circuit Breaker*
   - Será utilizado o Hystrix como circuit breaker na fila de mensageria entre os microserviços e servidor de authenticação e autorização.
   - Nesse cenário ele também será usado para monitoramento desses recursos.
