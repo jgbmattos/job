@@ -89,3 +89,27 @@ Criaria os seguintes endpoints:
   
   
 OBS: Não fica totalmente claro quais dados são necessários ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
+
+# **Sistema**
+## Disclaimer
+A idéia desse "sistema" criado foi explorar a idéia de Microserviços se comunicando através de uma api REST, além de dar uma passada no tema de mensageria. Em momento algum esse trabalho teve a pretensão de fazer um código bonito, eficiente e a prova de falhas.
+
+Se a idéia fosse evoluir esse sistema faria algumas mudanças de imediato:
+- Utilização do swagger para criação e versionamento da API Rest.
+- Utilização do aiohttp ao invés de flask.
+- Conectar realmente a um database.
+- Implementar autenticação e autorização no servidor Auth.
+
+
+Para rodar o sistema:
+- Crie um ambiente virtual
+- Abra um terminal
+- Se conecte ao ambiente virtual criado acima
+  - instale os pacotes (pip install -r requeriments)
+  - rode o arquivo orquestrador.py (python orquestrador.py)
+  - O orquestrador irá criar 3 aplicações em flask representando os microserviços, implementará uma comunicação assíncrona com o front end utilizando Celery como broker, além de uma pagina para testar os endpoints desses microserviços.
+  - O orquestrador disponibilizará um HTML através do link "http://127.0.0.1:5005". Nesse HTML teremos 3 botões para acessar os "microserviços" indepentementes e um quarto botão que irá utilizar mensageria e comunicação assíncrona para rodar algo que demanda um grande processamento em background.
+- Abra um segundo terminal
+  - rode serviço do Celery para mensageria (celery -A orquestrador.celery worker)
+- Acesse o link http://127.0.0.1:5005
+
