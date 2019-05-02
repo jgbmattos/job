@@ -175,6 +175,7 @@ Criaria os seguintes endpoints:
 A idéia desse "sistema" criado foi explorar a idéia de Microserviços se comunicando através de uma api REST, além de dar uma passada no tema de mensageria. Em momento algum esse trabalho teve a pretensão de fazer um código bonito, eficiente e a prova de falhas.
 
 Se a idéia fosse evoluir esse sistema faria algumas mudanças de imediato:
+- Utilizacao de DOCKER
 - Utilização do swagger para criação e versionamento da API Rest.
 - Utilização do aiohttp ao invés de flask.
 - Conectar realmente a um database.
@@ -182,6 +183,7 @@ Se a idéia fosse evoluir esse sistema faria algumas mudanças de imediato:
 
 
 Para rodar o sistema:
+- Utilizado python 3.6.3
 - Crie um ambiente virtual
 - Abra um terminal
 - Se conecte ao ambiente virtual criado acima
