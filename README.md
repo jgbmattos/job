@@ -25,22 +25,22 @@ A arquitetura básica do projeto consiste nos seguintes items:
 - Circuit Breaker*
   - Será utilizado o Hystrix como circuit breaker na fila de mensageria entre os microserviços e servidor de authenticação e autorização.
   - Nesse cenário ele também será usado para monitoramento desses recursos.
-###### *Não ficou claro no problema se os micro serviços que acessarão esses sistemas vão precisar de uma comunicação assíncrona. Acredito que sim, se este for o caso, trocasse a API REST proposta aqui, por algum serviço de mensageria entre todos os micro serviços e adicionasse o circuit breaker em toda essa comunicação. Além de prevenir problemas adicionasse uma camada legal de monitoramento em toda a comunicação.
+###### *Não ficou claro no problema se os micro serviços que acessarão esses sistemas vão precisar de uma comunicação assíncrona. Acredito que sim, se este for o caso, a comunicação entre os micro serviços deverá ser feita por um message broker. O Hystrix além de prevenir problemas adicionasse uma camada legal de monitoramento em toda a comunicação.
 - Microserviço para base B e C, com o intuito de permitir escalar facilmente.
 - Base A não necessáriamente precisaria ser um microserviço. As vezes um monolito numa situação dessa facilite o controle de segurança de acesso etc.
-- **BASE A**:
-  - Sistema deve ficar em um rede interna, atrás de um firewall. Com isso pretende-se além da segurança tradicional que a combinação HTTPS + JWT para requisições da API trazer uma maior facilidade e controle na manutenção por pessoas autorizadas.
-  - Acredito também que para um sistema desse tipo é muito importante que as autorização sejam muito bem seguimentadas para somente o escopo que a pessoa realmente deve ter acesso, além do acesso aos dados serem sempre temporários.
+- **Sistema 1**:
+  - Sistema deve ficar em um rede interna, atrás de um firewall. 
+  - Utilizar além do HTTPS, autenticação mútua.
+  - Escopos de autorização bem definidos e sempre temporários.
   
-- **BASE B**:
+- **Sistema 2**:
   - Segurança, autorização e autenticação será garantida através do protocolo HTTPS + OAUTH 2.0.
-  - Acesso temporário aos recursos.
-  - Para ter um desempenho satisfatorio, esse micro serviço deverá ficar atrás de um balancedor de carga e distruído em um cluster de servidores.
+  - Acesso temporário.
+  - Utilizará um balancedor de carga e um cluster de servidores para poder escalar quando necessário.
   
-- **BASE C**:
-  - Utiliza-se de recurso elástico assim como a BASE B e com o intuíto de aumentar ainda mais o desempenho desse recurso não seria utilizado o OAuth 2.0. Com a diminuição do payload adicional que o token JWT insere na comunicação, níveis maiores de velocidade devem ser alcançados.
-  - Deve-se, para manter alguma segurança, ser enviado na requisição ao recurso um usuário e senha. A lógica de validação desse usuário deve ser armazenada e tratada pelo próprio micro serviço.
-  - Para ter um desempenho satisfatorio, esse micro serviço deverá ficar atrás de um balancedor de carga e distruído em um cluster de servidores.
+- **Sistema 3**:
+  - Utilizará um balancedor de carga e um cluster de servidores para poder escalar quando necessário.
+  - Não utilizará Oauth 2.0 de forma a diminuir o payload de cada requisição, tornando a comunicação mais eficiente. Para garantir segurança enviar usuário e senha em cada requisicao.
   
 Diagrama:
 ![Arquitetura microserviços](https://user-images.githubusercontent.com/10090364/57042620-99c1dc80-6c3b-11e9-8f0f-08916070b6f2.png)
@@ -56,7 +56,7 @@ Diagrama:
 - AWS MQ para mensageria entre os microserviços.
 
 # **Dados armazenados**
-- Para todos os sitemas armazenaria dados da ultima consulta. Data/Hora, IP, Usuário.
+- Para todos os sitemas armazenaria dados da ultima consulta. Data/Hora, IP, Usuário da última consulta.
 - Sistema 2.
    - Armazenaria também o nome da pessoa. Já tenho todos os dados mais relevantes, o nome não me parece ser um problema. Da forma que está caso eu precise apresentar o score + nome para algum usuário eu precisaria fazer a consulta em outro microservico para buscar essa informação. Me parece disperdício.
    - A lista de dívidas me parece algo importante para fazer o score do cliente, porém, por se tratar de uma informação bastante confidencial acredito que não deveria ser gravado no banco B. Caso seja necessário para o calculo deve ser solicitado ao serviço A que fará uma avaliação de permissão.
@@ -98,15 +98,16 @@ Criaria os seguintes endpoints:
   - [POST] /sistema1/pessoa_fisica/< id>/lista_dividas
     - Divida (Objeto)
   - [PUT] /sistema1/pessoa_fisica/<id>/lista_dividas/< id>
+  
 - **sistema 2**  
-  - [GET] /sistema1/pessoa_fisica
+  - [GET] /sistema2/pessoa_fisica
     - Filtros:
       - Nome
       - CPF
       - Data_cadastro
-  - [GET] /sistema1/pessoa_fisica/< id>
-  - [PUT] /sistema1/pessoa_fisica/< id>
-  - [POST] /sistemas/pessoa_fisica
+  - [GET] /sistema2/pessoa_fisica/< id>
+  - [PUT] /sistema2/pessoa_fisica/< id>
+  - [POST] /sistema2/pessoa_fisica
     - Parâmetros:
       - Nome
       - cpf
@@ -115,37 +116,59 @@ Criaria os seguintes endpoints:
       - Endereco (objeto)
       - Lista Bens (objeto)
       - Fontes de renda (objeto)
-  - [GET] /sistema1/pessoa_fisica/< id>/endereco
-  - [POST] /sistema1/pessoa_fisica/< id>/endereco
+  - [GET] /sistema2/pessoa_fisica/< id>/endereco
+  - [POST] /sistema2/pessoa_fisica/< id>/endereco
     - Parâmetros:
       - Logradouro
       - Numero 
       - ...
-  - [PUT] /sistema1/pessoa_fisica/< id>/endereco/< id>
+  - [PUT] /sistema2/pessoa_fisica/< id>/endereco/< id>
       - Parâmetros:
         - Logradouro
         - Numero 
         - ...
-  - [GET] /sistema1/pessoa_fisica/< id>/bens
+  - [GET] /sistema2/pessoa_fisica/< id>/bens
     - Filtros
       - Data_cadastro
       - Valor_bem
-  - [PUT] /sistema1/pessoa_fisica/< id>/bens
-  - [POST] /sistema1/pessoa_fisica/< id>
-  - /sistema2/< cpf>
-  - /sistema2/< nome>
-  - /sistema2/< endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
-  - /sistema2
-    - Permitira querys de lista de dividas (Pessoas com maiores dividas, por favor, quantidade, etc).
+  - [PUT] /sistema2/pessoa_fisica/< id>/bens/< id>
+  - [POST] /sistema2/pessoa_fisica/< id>/bens
+  
 - **sistema 3**  
-  - /sistema3/< cpf>
-  - /sistema3/< cartao>
-  - /sistema3/<dt_movimentacao> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
-  - /sistema3/<tipo_de_movimentacao>
-  - /sistema3/<id_bureau> --listaria consultas no bureau
+  - [GET] /sistema3/pessoa_fisica
+    - Filtros:
+      - Nome
+      - CPF
+      - Data_cadastro
+      - Bureau
+  - [GET] /sistema3/pessoa_fisica/< id>
+  - [PUT] /sistema3/pessoa_fisica/< id>
+  - [POST] /sistema3/pessoa_fisica
+    - Parâmetros:
+      - Nome
+      - cpf
+      - nome da mae
+      - nome do pai
+      - Movimentacao Financeira (objeto)
+      - Dados Ultima Compra (objeto)
+  - [GET] /sistema3/pessoa_fisica/< id>/movimentacao_financeira
+  - [PUT] /sistema3/pessoa_fisica/< id>/movimentacao_financeira/< id>
+  - [POST] /sistema3/pessoa_fisica/< id>/movimentacao_financeira
+  - [GET] /sistema3/pessoa_fisica/< id>/dados_ultima_compra
+  - [PUT] /sistema3/pessoa_fisica/< id>/dados_ultima_compra/< id>
+  - [POST] /sistema3/pessoa_fisica/< id>/dados_ultima_compra
   
-  
-OBS: Não fica totalmente claro quais dados são as necessidades ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
+  - [GET] /sistema3/bureau
+    - Filtros
+      - ID
+      - Cidade
+      - Estado
+  - [POST] /sistema3/bureau
+    - Parametros
+      - Endereco
+      - Responsavel
+      - ...
+  - [PUT] /sistema3/bureau/id
 
 # **Sistema**
 ## Disclaimer
