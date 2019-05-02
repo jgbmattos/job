@@ -29,7 +29,7 @@ A arquitetura básica do projeto consiste nos seguintes items:
 - Microserviço para base B e C, com o intuito de permitir escalar facilmente.
 - Base A não necessáriamente precisaria ser um microserviço. As vezes um monolito numa situação dessa facilite o controle de segurança de acesso etc.
 - **BASE A**:
-  - Sistema deve ficar em um rede interna, atrás de um firewall. Com isso pretende-se além da segurança tradicional que a combinação HTTPS + JWT para requisições da API trazer uma melhor manutenção de pessoas autorizadas.
+  - Sistema deve ficar em um rede interna, atrás de um firewall. Com isso pretende-se além da segurança tradicional que a combinação HTTPS + JWT para requisições da API trazer uma maior facilidade e controle na manutenção por pessoas autorizadas.
   - Acredito também que para um sistema desse tipo é muito importante que as autorização sejam muito bem seguimentadas para somente o escopo que a pessoa realmente deve ter acesso, além do acesso aos dados serem sempre temporários.
   - Banco PostgreSQL
   
