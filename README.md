@@ -31,20 +31,17 @@ A arquitetura básica do projeto consiste nos seguintes items:
 - **BASE A**:
   - Sistema deve ficar em um rede interna, atrás de um firewall. Com isso pretende-se além da segurança tradicional que a combinação HTTPS + JWT para requisições da API trazer uma maior facilidade e controle na manutenção por pessoas autorizadas.
   - Acredito também que para um sistema desse tipo é muito importante que as autorização sejam muito bem seguimentadas para somente o escopo que a pessoa realmente deve ter acesso, além do acesso aos dados serem sempre temporários.
-  - Banco PostgreSQL
   
 - **BASE B**:
   - Segurança, autorização e autenticação será garantida através do protocolo HTTPS + OAUTH 2.0.
   - Acesso temporário aos recursos.
   - Para ter um desempenho satisfatorio, esse micro serviço deverá ficar atrás de um balancedor de carga e distruído em um cluster de servidores.
-  - Banco de dados MongoDB
   
 - **BASE C**:
   - Utiliza-se de recurso elástico assim como a BASE B e com o intuíto de aumentar ainda mais o desempenho desse recurso não seria utilizado o OAuth 2.0. Com a diminuição do payload adicional que o token JWT insere na comunicação, níveis maiores de velocidade devem ser alcançados.
   - Deve-se, para manter alguma segurança, ser enviado na requisição ao recurso um usuário e senha. A lógica de validação desse usuário deve ser armazenada e tratada pelo próprio micro serviço.
   - Para ter um desempenho satisfatorio, esse micro serviço deverá ficar atrás de um balancedor de carga e distruído em um cluster de servidores.
-  - Banco de dados MongoDB
-
+  
 Diagrama:
 ![Arquitetura microserviços](https://user-images.githubusercontent.com/10090364/57042620-99c1dc80-6c3b-11e9-8f0f-08916070b6f2.png)
 
@@ -57,7 +54,6 @@ Diagrama:
     - *Para uma solução oficional utilizaria AIOHTTP. Por ser assíncrono ele tende a performar quando temos requisições demoradas e/ou com muitas requisições simultâneas.
 - Swagger. Para geração de API e documentação das mesmas (Não utilizado nesse projeto porém seria uma opção para um caso real).
 - AWS MQ para mensageria entre os microserviços.
-- MongoDB & PostgreSQL
 
 # **Dados armazenados**
 - Para todos os sitemas armazenaria dados da ultima consulta. Data/Hora, IP, Usuário.
@@ -72,7 +68,26 @@ Bancos e outras instituições acredito que teriam um interesse maior em acessar
 
 Criaria os seguintes endpoints:
 - **sistema 1**
-  - /sistema1/< cpf>
+  - [GET] /sistema1/pessoa_fisica
+    - Filtros: 
+      - CPF
+      - Data_cadastro
+      - Data_atualizacao
+      - nome
+  - [GET] /sistema1/pessoa_fisica/<id>    
+  - [POST] /sistema1/pessoa_fisica
+    - Parâmetros :
+      - Nome
+      - cpf
+      - nome da mae
+      - nome do pai
+      - Endereco (objeto)
+      - Lista de dividas (objeto)
+  - [POST] /sistema1/pessoa_fisica/<id>/endereco
+  - [PUT] /sistema1/pessoa_fisica/<id>/endereco/<id>
+  - [POST] /sistema1/pessoa_fisica/<id>/lista_dividas
+  - [PUT] /sistema1/pessoa_fisica/<id>/lista_dividas/<id>
+  - [PUT
   - /sistema1/< nome>
   - /sistema1/< endereco> --Entendo que alguem teria interesse em saber dados do dono de determinado imóvel (desconheço a legalidade)
     - Permtiria query's de data para listas de dividas, data de criação da divida, ou algo parecido.
