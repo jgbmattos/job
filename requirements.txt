@@ -1,0 +1,7 @@
+Flask
+Flask-Injector
+PyJWT==1.4.0
+pyopenssl
+celery==4.1.1
+Flask-SQLAlchemy
+requests
