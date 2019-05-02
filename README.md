@@ -66,9 +66,9 @@ Diagrama:
    - A lista de dívidas me parece algo importante para fazer o score do cliente, porém, por se tratar de uma informação bastante confidencial acredito que não deveria ser gravado no banco B. Caso seja necessário para o calculo deve ser solicitado ao serviço A que fará uma avaliação de permissão.
    
 # **Disponibilização dos Dados**
-Para disponibilizar os dados acredito que uma aplicação WEB seja suficiente.
+Para disponibilizar os dados acredito que a combinação de aplicação WEB/API's Rest sejam suficientes.
 Dados sensíveis devem ser disponibilizados mediante autenticação. 
-Bancos e outras instituições acredito que teriam mais interesse em acessar a API diretamente para poder integrar com os sistemas próprios. Nesse cenário um local no site para criação de CHAVES de acesso pode ser uma maneira interessante de criar um link de acesso com sistemas tercerios de forma segura.
+Bancos e outras instituições acredito que teriam um interesse maior em acessar os dados por uma API diretamente. Nesse cenário um local no site para criação de CHAVES de acesso pode ser uma maneira interessante de criar um link de acesso com sistemas tercerios de forma segura.
 
 Criaria os seguintes endpoints:
 - **sistema 1**
@@ -90,7 +90,7 @@ Criaria os seguintes endpoints:
   - /sistema3/<id_bureau> --listaria consultas no bureau
   
   
-OBS: Não fica totalmente claro quais dados são necessários ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
+OBS: Não fica totalmente claro quais dados são as necessidades ao final de tudo. Por conta disso é dificil dizer o que será interessante adicionar para cada microserviço.
 
 # **Sistema**
 ## Disclaimer
