@@ -99,3 +99,7 @@ Para rodar o sistema:
   - http:127.0.0.1:5002/api/pessoa_fisica
   - http:127.0.0.1:5003/api/pessoa_fisica
   - http:127.0.0.1:5003/api/bureau
+- Documentação da API:
+  - http:127.0.0.1:5001/api/doc
+  - http:127.0.0.1:5002/api/doc
+  - http:127.0.0.1:5003/api/doc
