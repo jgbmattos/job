@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+
+    microservico1:
+        build: ./system1
+        ports:
+            - "5001:5001"
+        volumes:
+            - .:/system1
+            
+    microservico2:
+        build: ./system2
+        ports:
+            - "5002:5002"
+        volumes:
+            - .:/system2        
+            
+    microservico3:
+        build: ./system3
+        ports:
+            - "5003:5003"
+        volumes:
+            - .:/system3
