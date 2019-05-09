@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, jsonify, request, make_response, abort
+from flask import Flask, jsonify, request, make_response, abort, render_template
 from flask_restplus import Resource, Api
 
 app = Flask(__name__)
@@ -44,6 +44,10 @@ dados = {'pessoas':
         }
     ]
 }
+
+@app.route('/api/doc/')
+def home():
+    return render_template('home.html')
 
 @ns_pessoa_fisica.route('/')
 class IndividualCollection(Resource):
